@@ -1,3 +1,4 @@
+import 'package:app_movies/modules/splash/splash_module.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Container(),
+      getPages: [
+        ...SplashModule().routers,
+      ],
     );
   }
 }
