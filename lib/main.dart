@@ -1,4 +1,5 @@
 import 'package:app_movies/modules/splash/splash_module.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,6 +10,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseRemoteConfig.instance.fetchAndActivate();
   runApp(const MyApp());
 }
 
