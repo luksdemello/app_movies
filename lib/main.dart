@@ -1,6 +1,7 @@
 import 'package:app_movies/application/bindings/application_binding.dart';
 import 'package:app_movies/modules/home/home_module.dart';
 import 'package:app_movies/modules/login/login_module.dart';
+import 'package:app_movies/modules/movie_detail/movie_detail_module.dart';
 import 'package:app_movies/modules/splash/splash_module.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         ...SplashModule().routers,
         ...LoginModule().routers,
         ...HomeModule().routers,
+        ...MovieDetailModule().routers,
       ],
     );
   }
