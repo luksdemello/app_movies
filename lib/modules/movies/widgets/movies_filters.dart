@@ -1,8 +1,10 @@
+import 'package:app_movies/modules/movies/movies_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'filter_tag.dart';
 
-class MoviesFilters extends StatelessWidget {
+class MoviesFilters extends GetView<MoviesController> {
   const MoviesFilters({Key? key}) : super(key: key);
 
   @override
@@ -11,18 +13,15 @@ class MoviesFilters extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Row(
-          children: const [
-            FilterTag(),
-            FilterTag(),
-            FilterTag(),
-            FilterTag(),
-            FilterTag(),
-            FilterTag(),
-            FilterTag(),
-            FilterTag(),
-          ],
-        ),
+        child: Obx(() {
+          return Row(
+            children: controller.genres
+                .map(
+                  (element) => const FilterTag(),
+                )
+                .toList(),
+          );
+        }),
       ),
     );
   }

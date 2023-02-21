@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import '../../application/ui/app_movies_icons_icons.dart';
 import 'package:app_movies/application/ui/theme_extensios.dart';
 
+import '../movies/widgets/movies_binding.dart';
+
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
@@ -43,6 +45,7 @@ class HomePage extends GetView<HomeController> {
             return GetPageRoute(
               settings: settings,
               page: () => const MoviesPage(),
+              binding: MoviesBinding(),
             );
           }
 
