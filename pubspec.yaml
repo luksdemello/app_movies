@@ -84,6 +84,13 @@ flutter:
     - family: AppMoviesIcons
       fonts:
         - asset: assets/fonts/AppMoviesIcons.ttf
+    - family: Metropolis
+      fonts:
+        - asset: assets/fonts/metropolis/Metropolis-Regular.otf
+        - asset: assets/fonts/metropolis/Metropolis-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/metropolis/Metropolis-Bold.otf
+        
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
