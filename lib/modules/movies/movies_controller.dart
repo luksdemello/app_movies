@@ -19,6 +19,8 @@ class MoviesController extends GetxController with MessagesMixin {
   var _popularMovies = <MovieModel>[];
   var _topRatedMovies = <MovieModel>[];
 
+  final genreSelected = Rxn<GenreModel>();
+
   MoviesController({
     required GenresService genresService,
     required MoviesService moviesService,
@@ -65,6 +67,30 @@ class MoviesController extends GetxController with MessagesMixin {
 
       var newTopRatedMovies = _topRatedMovies.where((movie) {
         return movie.title.toLowerCase().contains(title.toLowerCase());
+      });
+
+      popularMovies.assignAll(newPopularMovies);
+      topRatedMovies.assignAll(newTopRatedMovies);
+    } else {
+      popularMovies.assignAll(_popularMovies);
+      topRatedMovies.assignAll(_topRatedMovies);
+    }
+  }
+
+  void filterMoviesByGenre(GenreModel? genreModel) {
+    if (genreModel?.id == genreSelected.value?.id) {
+      genreModel = null;
+    }
+
+    genreSelected.value = genreModel;
+
+    if (genreModel != null) {
+      var newPopularMovies = _popularMovies.where((movie) {
+        return movie.genres.contains(genreModel?.id);
+      });
+
+      var newTopRatedMovies = _topRatedMovies.where((movie) {
+        return movie.genres.contains(genreModel?.id);
       });
 
       popularMovies.assignAll(newPopularMovies);
