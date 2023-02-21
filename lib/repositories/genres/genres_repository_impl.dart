@@ -19,6 +19,7 @@ class GenresRepositoryImpl implements GenresRepository {
       '/genre/movie/list',
       query: {
         'api_key': FirebaseRemoteConfig.instance.getString('api_token'),
+        'language': 'pt-br',
       },
       decoder: (data) {
         final resultData = data['genres'];
