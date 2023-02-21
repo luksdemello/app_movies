@@ -1,3 +1,4 @@
+import 'package:app_movies/application/bindings/application_binding.dart';
 import 'package:app_movies/modules/login/login_module.dart';
 import 'package:app_movies/modules/splash/splash_module.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'App movies',
+      initialBinding: ApplicationBinding(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
