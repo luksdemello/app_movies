@@ -6,6 +6,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'application/ui/app_movies_ui_config.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -23,11 +24,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'App movies',
+      title: AppMoviesUiConfig.title,
+      theme: AppMoviesUiConfig.theme,
       initialBinding: ApplicationBinding(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       getPages: [
         ...SplashModule().routers,
         ...LoginModule().routers,
