@@ -36,7 +36,7 @@ class MovieCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       clipBehavior: Clip.antiAlias,
                       child: Image.network(
-                        movie.posterPath,
+                        'https://image.tmdb.org/t/p/w200/${movie.posterPath}',
                         width: 148,
                         height: 184,
                         fit: BoxFit.cover,
