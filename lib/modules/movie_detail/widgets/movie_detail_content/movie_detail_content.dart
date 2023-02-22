@@ -3,6 +3,8 @@ import 'package:app_movies/modules/movie_detail/widgets/movie_detail_content/mov
 import 'package:app_movies/modules/movie_detail/widgets/movie_detail_content/movie_detail_content_title.dart';
 import 'package:flutter/material.dart';
 
+import 'movie_detail_content_production_companies.dart';
+
 class MovieDetailContent extends StatelessWidget {
   final MovieDetailModel? movie;
 
@@ -18,6 +20,7 @@ class MovieDetailContent extends StatelessWidget {
       children: [
         MovieDetailContentTitle(movie: movie),
         MovieDetailContentCredits(movie: movie),
+        MovieDetailContentProductionCompanies(movie: movie),
       ],
     );
   }
