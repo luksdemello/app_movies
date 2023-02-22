@@ -81,8 +81,11 @@ class MovieCard extends StatelessWidget {
                   child: IconButton(
                     iconSize: 13,
                     icon: Icon(
-                      AppMoviesIcons.heart,
-                      color: context.colorGrey,
+                      movie.favorite
+                          ? AppMoviesIcons.heart
+                          : AppMoviesIcons.heartEmpty,
+                      color:
+                          movie.favorite ? context.colorRed : context.colorGrey,
                     ),
                     onPressed: favoriteCallback,
                   ),
