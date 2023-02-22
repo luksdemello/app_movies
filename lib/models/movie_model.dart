@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class MovieModel {
@@ -43,4 +44,22 @@ class MovieModel {
 
   factory MovieModel.fromJson(String source) =>
       MovieModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  MovieModel copyWith({
+    int? id,
+    String? title,
+    String? releaseDate,
+    String? posterPath,
+    List<int>? genres,
+    bool? favorite,
+  }) {
+    return MovieModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      releaseDate: releaseDate ?? this.releaseDate,
+      posterPath: posterPath ?? this.posterPath,
+      genres: genres ?? this.genres,
+      favorite: favorite ?? this.favorite,
+    );
+  }
 }

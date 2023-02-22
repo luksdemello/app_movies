@@ -8,9 +8,12 @@ import 'package:intl/intl.dart';
 class MovieCard extends StatelessWidget {
   final dateFormat = DateFormat('dd/MM/y');
   final MovieModel movie;
+  final VoidCallback favoriteCallback;
+
   MovieCard({
     Key? key,
     required this.movie,
+    required this.favoriteCallback,
   }) : super(key: key);
 
   @override
@@ -81,7 +84,7 @@ class MovieCard extends StatelessWidget {
                       AppMoviesIcons.heart,
                       color: context.colorGrey,
                     ),
-                    onPressed: () {},
+                    onPressed: favoriteCallback,
                   ),
                 ),
               ),

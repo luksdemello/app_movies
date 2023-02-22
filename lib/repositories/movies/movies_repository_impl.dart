@@ -116,4 +116,26 @@ class MoviesRepositoryImpl implements MoviesRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<MovieModel>> getFavoriesMovies(String userId) async {
+    try {
+      final favoritesMovies = await FirebaseFirestore.instance
+          .collection('favorites')
+          .doc(userId)
+          .collection('movies')
+          .get();
+
+      final listFavorites = <MovieModel>[];
+
+      for (var movie in favoritesMovies.docs) {
+        listFavorites.add(MovieModel.fromMap(movie.data()));
+      }
+
+      return listFavorites;
+    } catch (e, s) {
+      log('Erro ao buscar filmes favoritos', error: e, stackTrace: s);
+      throw Exception('Erro ao buscar filmes favorites');
+    }
+  }
 }

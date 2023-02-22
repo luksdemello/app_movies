@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:app_movies/application/auth/auth_service.dart';
 import 'package:app_movies/application/ui/messages/messages_mixin.dart';
 import 'package:app_movies/models/genre_model.dart';
 import 'package:app_movies/models/movie_model.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 class MoviesController extends GetxController with MessagesMixin {
   final GenresService _genresService;
   final MoviesService _moviesService;
+  final AuthService _authService;
 
   final _message = Rxn<MessageModel>();
   final genres = <GenreModel>[].obs;
@@ -24,8 +26,10 @@ class MoviesController extends GetxController with MessagesMixin {
   MoviesController({
     required GenresService genresService,
     required MoviesService moviesService,
+    required AuthService authService,
   })  : _genresService = genresService,
-        _moviesService = moviesService;
+        _moviesService = moviesService,
+        _authService = authService;
 
   @override
   void onInit() {
@@ -36,10 +40,12 @@ class MoviesController extends GetxController with MessagesMixin {
   @override
   Future<void> onReady() async {
     super.onReady();
-    try {
-      final genresData = await _genresService.getGenres();
-      genres.assignAll(genresData);
+    await getGenres();
+    await getMovies();
+  }
 
+  Future<void> getMovies() async {
+    try {
       final popularMoviesData = await _moviesService.getPopularMovies();
       final topRatedMoviesData = await _moviesService.getTopRated();
 
@@ -54,6 +60,21 @@ class MoviesController extends GetxController with MessagesMixin {
         MessageModel.error(
           title: 'Erro',
           message: 'Erro ao carregar dados da página',
+        ),
+      );
+    }
+  }
+
+  Future<void> getGenres() async {
+    try {
+      final genresData = await _genresService.getGenres();
+      genres.assignAll(genresData);
+    } catch (e, s) {
+      log('Erro ao carregar genêros da página', error: e, stackTrace: s);
+      _message(
+        MessageModel.error(
+          title: 'Erro',
+          message: 'Erro ao carregar genêros da página',
         ),
       );
     }
@@ -98,6 +119,16 @@ class MoviesController extends GetxController with MessagesMixin {
     } else {
       popularMovies.assignAll(_popularMovies);
       topRatedMovies.assignAll(_topRatedMovies);
+    }
+  }
+
+  Future<void> favoriteMovie(MovieModel movie) async {
+    final user = _authService.user;
+
+    if (user != null) {
+      final newMovie = movie.copyWith(favorite: !movie.favorite);
+      await _moviesService.addOrRemoveFavorite(user.uid, newMovie);
+      await getMovies();
     }
   }
 }
