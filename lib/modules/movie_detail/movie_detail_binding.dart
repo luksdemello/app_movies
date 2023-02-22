@@ -5,7 +5,9 @@ class MovieDetailBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut(
-      () => MovieDetailController(),
+      () => MovieDetailController(
+        moviesService: Get.find(),
+      ),
     );
   }
 }
