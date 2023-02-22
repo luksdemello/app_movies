@@ -54,7 +54,7 @@ class MovieDetailModel {
               const []),
       urlImages: List<dynamic>.from((map['images']['posters'] ?? const []))
           .map<String>(
-              (i) => 'https://image.tmdb.org/t/p/w200${i['profile_path']}')
+              (i) => 'https://image.tmdb.org/t/p/w200${i['file_path']}')
           .toList(),
       overview: map['overview'] ?? '',
       releaseDate: DateTime.parse(map['release_date']),
