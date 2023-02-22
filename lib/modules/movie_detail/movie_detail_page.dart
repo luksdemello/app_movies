@@ -1,4 +1,5 @@
 import 'package:app_movies/modules/movie_detail/movie_detail_controller.dart';
+import 'package:app_movies/modules/movie_detail/widgets/movie_detail_content.dart';
 import 'package:app_movies/modules/movie_detail/widgets/movie_detail_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,9 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                 MovieDetailHeader(
                   movie: controller.movie.value,
                 ),
+                MovieDetailContent(
+                  movie: controller.movie.value,
+                )
               ],
             );
           },
