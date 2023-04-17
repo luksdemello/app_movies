@@ -5,7 +5,7 @@
 
 # Sobre o Projeto
 
-O App moves é uma aplicação mobile construída para adquirir conhecimento.
+O App Movies é uma aplicação mobile construída para adquirir conhecimento.
 
 A aplicação consiste em um aplicativo mobile para a visualização de filmes (informações, elenco, imagens), desenvolvido em flutter.
 
